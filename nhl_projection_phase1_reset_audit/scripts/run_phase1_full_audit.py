@@ -1,0 +1,38 @@
+import argparse
+
+from nhl_model.audit.nhl_api_audit import run_audit as run_nhl
+from nhl_model.audit.moneypuck_audit import run_audit as run_mp
+from nhl_model.audit.sheets_templates import generate_templates
+from nhl_model.audit.field_map import build_field_map
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--season', required=True)
+    parser.add_argument('--teams', nargs='+', required=True)
+    parser.add_argument('--game-id', required=True)
+    parser.add_argument('--slate-date', required=True)
+    args = parser.parse_args()
+
+    print('[1/4] NHL API audit')
+    nhl = run_nhl(args.season, args.teams, args.game_id)
+    print(nhl['summary'].to_string(index=False))
+
+    print("\n[2/4] MoneyPuck audit")
+    mp = run_mp(args.season)
+    print(mp['summary'].to_string(index=False))
+
+    print("\n[3/4] Google Sheets templates")
+    generate_templates(args.slate_date)
+    print('Templates generated.')
+
+    print("\n[4/4] Field map")
+    field_map = build_field_map(args.season, args.slate_date)
+    if not field_map['coverage'].empty:
+        print(field_map['coverage'].head(50).to_string(index=False))
+
+    print("\nPhase 1 full audit finished.")
+
+
+if __name__ == '__main__':
+    main()

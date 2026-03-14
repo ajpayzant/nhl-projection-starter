@@ -1,0 +1,47 @@
+TARGET_OUTPUTS = {
+    "team": [
+        "goals",
+        "assists",
+        "shots_on_goal",
+        "power_play_toi",
+        "power_play_goals",
+        "power_play_assists",
+        "penalty_kill_toi",
+    ],
+    "skater": [
+        "time_on_ice",
+        "power_play_toi",
+        "penalty_kill_toi",
+        "shots_on_goal",
+        "goals",
+        "assists",
+        "points",
+        "power_play_goals",
+        "power_play_assists",
+        "power_play_points",
+    ],
+    "goalie": [
+        "time_on_ice",
+        "saves",
+        "goals_against",
+    ],
+}
+
+FIELD_PATTERNS = {
+    "time_on_ice": ["toi", "time_on_ice", "toi_seconds", "toi_minutes", "ice_time"],
+    "power_play_toi": ["pp_toi", "power_play_toi", "powerplaytime", "power_play_time_on_ice"],
+    "penalty_kill_toi": ["pk_toi", "penalty_kill_toi", "shorthandedtime", "short_handed_time_on_ice"],
+    "shots_on_goal": ["shots_on_goal", "sog", "shotsagainst", "shots_against", "team_sog"],
+    "goals": ["goals", "goalsfor", "team_goals", "goalsagainst"],
+    "assists": ["assists", "primaryassist", "secondaryassist", "team_assists"],
+    "points": ["points", "pp_points", "power_play_points"],
+    "power_play_goals": ["pp_goals", "powerplaygoals", "power_play_goals"],
+    "power_play_assists": ["pp_assists", "powerplayassists", "power_play_assists"],
+    "power_play_points": ["pp_points", "powerplaypoints", "power_play_points"],
+    "saves": ["saves", "shots_saved"],
+    "goals_against": ["goals_against", "goalsagainst", "ga"],
+    "shot_attempts": ["shotattempt", "tsa", "corsi", "fenwick"],
+    "expected_goals": ["xgoals", "expected_goals"],
+    "faceoff_wins": ["faceoffswon", "faceoff_wins"],
+    "faceoffs_taken": ["faceoff", "faceoffs_taken", "faceoffswon", "faceoffslost"],
+}
